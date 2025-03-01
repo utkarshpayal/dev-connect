@@ -31,7 +31,7 @@ Dev Connect provides a seamless way to share your development environment with p
 ![Connect](./Dev-Options.png)
 
 ### UI of Extension
-![Connect](./Dev-Extension.png)
+![Connect](./Dev-Rename.png)
 
 ## Technologies Used
 - **Hypertele**

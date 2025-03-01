@@ -21,11 +21,17 @@ Dev Connect provides a seamless way to share your development environment with p
 
 ## UI Preview
 
-### Start Sharing
+### UI for Sharing 
 ![Start Sharing](./Dev-Share.png)
 
-### Connect
+### UI for connecting
 ![Connect](./Dev-Connect.png)
+
+### UI of Options
+![Connect](./Dev-Options.png)
+
+### UI of Extension
+![Connect](./Dev-Extension.png)
 
 ## Technologies Used
 - **Hypertele**

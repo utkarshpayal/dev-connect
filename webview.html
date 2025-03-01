@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Configuration</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background-color: #1a1a2e;
+        color: #e1e1e1;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        padding: 1rem;
+        overflow: hidden;
+      }
+      .logo {
+        width: fit-content;
+        height: 50px;
+        padding: 1rem;
+        background: linear-gradient(135deg, #6b46c1 0%, #805ad5 100%);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 2.3em;
+        box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+      }
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        height: calc(100vh - 80px);
+      }
+      .top-section {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 1rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background: #16213e;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+      th,
+      td {
+        padding: 0.6rem;
+        text-align: left;
+        border-bottom: 1px solid #2a2a4a;
+      }
+      th {
+        background-color: #6b46c1;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      td {
+        color: #e1e1e1;
+        font-size: 0.9rem;
+      }
+      input {
+        width: 100%;
+        padding: 0.4rem 0.6rem;
+        border: 1px solid #4a5568;
+        border-radius: 4px;
+        background-color: #2d3748;
+        color: #e1e1e1;
+        font-size: 0.9rem;
+      }
+      input.port-input {
+        width: 80px;
+      }
+      .connector-section {
+        background: #16213e;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        height: fit-content;
+        padding: 1rem;
+        /* align-items: start; */
+        /* justify-content: start; */
+        display: flex;
+        flex-direction: column;
+      }
+
+      button {
+        padding: 0.6rem 1rem;
+        background: linear-gradient(135deg, #6b46c1 0%, #805ad5 100%);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+      button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(107, 70, 193, 0.4);
+      }
+      .result-section {
+        background: #16213e;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      #connectorResult {
+        flex: 1;
+        font-family: "Consolas", monospace;
+        padding: 0.8rem;
+        background: #1a1a2e;
+        border-radius: 4px;
+        color: #ffffff;
+        border: 1px solid #2d3748;
+        min-height: 42px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+      }
+      .Service {
+        color: #ffffff;
+        font-weight: bold;
+      }
+      .input-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        max-width: 100%;
+        flex-direction: row;
+      }
+
+      .input-group label {
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        min-width: 120px;
+      }
+
+      .data {
+        flex: 1;
+        max-width: 200px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      h3 {
+        color: #e1e1e1;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+      label {
+        color: #ffffff;
+        display: inline-block;
+        margin-bottom: 0.4rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      #maxUsers:hover{
+        cursor:not-allowed
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo">Dev Connect</div>
+    <div class="main-container">
+      <div class="top-section">
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Host</th>
+              <th>Port</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="Service">Frontend</td>
+              <td><input type="text" id="feHost" placeholder="localhost" /></td>
+              <td>
+                <input
+                  type="number"
+                  id="fePort"
+                  class="port-input"
+                  placeholder="3000"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="Service">Backend</td>
+              <td><input type="text" id="beHost" placeholder="localhost" /></td>
+              <td>
+                <input
+                  type="number"
+                  id="bePort"
+                  class="port-input"
+                  placeholder="8080"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="Service">Database</td>
+              <td><input type="text" id="dbHost" placeholder="localhost" /></td>
+              <td>
+                <input
+                  type="number"
+                  id="dbPort"
+                  class="port-input"
+                  placeholder="5432"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="Service">Others</td>
+              <td>
+                <input type="text" id="othersHost" placeholder="localhost" />
+              </td>
+              <td>
+                <input
+                  type="number"
+                  id="othersPort"
+                  class="port-input"
+                  placeholder="9000"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="connector-section">
+          <div class="input-group">
+            <label for="connectorName">Connector</label>
+            <input
+              type="text"
+              id="connectorName"
+              class="data"
+              placeholder="my-connector"
+            />
+          </div>
+          <div class="input-group">
+            <label for="maxUsers">Max Users</label>
+            <input
+              type="number"
+              id="maxUsers"
+              class="data"
+              placeholder="Not available"
+              min="1"
+              disabled
+            />
+          </div>
+
+          <button onclick="generateConnector()">Connect</button>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <h3>Connector:</h3>
+        <div id="connectorResult">Here is the connector, copy it!</div>
+        <button onclick="copyToClipboard()">Copy</button>
+      </div>
+    </div>
+
+    <script type="module" src="test.mjs"></script>
+    <script>
+      function validateInput(value, type) {
+        if (type === "port") {
+          const portNumber = parseInt(value, 10);
+          if (isNaN(portNumber) || portNumber < 1 || portNumber > 65000) {
+            return "Port must be a valid number between 1 and 65000";
+          }
+        } else if (type === "hostname") {
+          const addressRegex =
+            /^(localhost|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$/;
+          if (!addressRegex.test(value)) {
+            return "Invalid hostname (must be localhost or a valid IP)";
+          }
+        }
+        return null;
+      }
+
+      function generateConnector() {
+        const connectorName =
+          document.getElementById("connectorName").value.trim() ||
+          "default-connector";
+        const feHost = document.getElementById("feHost").value.trim();
+        const fePort = document.getElementById("fePort").value.trim();
+
+        if (!feHost) {
+          document.getElementById("connectorResult").textContent =
+            "Frontend Host (feHost) is required.";
+          return;
+        }
+
+        if (!fePort) {
+          document.getElementById("connectorResult").textContent =
+            "Frontend Port (fePort) is required.";
+          return;
+        }
+
+        // Validate feHost and fePort first since they are required
+        const hostError = validateInput(feHost, "hostname");
+        if (hostError) {
+          document.getElementById(
+            "connectorResult"
+          ).textContent = `feHost: ${hostError}`;
+          return;
+        }
+
+        const portError = validateInput(fePort, "port");
+        if (portError) {
+          document.getElementById(
+            "connectorResult"
+          ).textContent = `fePort: ${portError}`;
+          return;
+        }
+
+        // Optional fields
+        const beHost = document.getElementById("beHost").value.trim();
+        const dbHost = document.getElementById("dbHost").value.trim();
+        const otherHost = document.getElementById("othersHost").value.trim();
+
+        const bePort = document.getElementById("bePort").value.trim();
+        const dbPort = document.getElementById("dbPort").value.trim();
+        const otherPort = document.getElementById("othersPort").value.trim();
+
+        const vscode = acquireVsCodeApi();
+
+      
+        
+        vscode.postMessage({
+            command: "setConnector",
+            feHost,
+            fePort,
+            beHost,
+            bePort,
+            dbHost,
+            dbPort,
+            otherHost,
+            otherPort,
+            connectorName
+        });
+    
+        // Validate optional hosts if provided
+        const optionalHosts = { beHost, dbHost, otherHost };
+        for (const [key, value] of Object.entries(optionalHosts)) {
+          if (value) {
+            const error = validateInput(value, "hostname");
+            if (error) {
+              document.getElementById(
+                "connectorResult"
+              ).textContent = `${key}: ${error}`;
+              return;
+            }
+          }
+        }
+
+        // Validate optional ports if provided
+        const optionalPorts = { bePort, dbPort, otherPort };
+        for (const [key, value] of Object.entries(optionalPorts)) {
+          if (value) {
+            const error = validateInput(value, "port");
+            if (error) {
+              document.getElementById(
+                "connectorResult"
+              ).textContent = `${key}: ${error}`;
+              return;
+            }
+          }
+        }
+
+        // Build connector string dynamically
+        let connectorParts = [`${connectorName}-FE=${feHost}:${fePort}`];
+
+        if (beHost && bePort) connectorParts.push(`BE=${beHost}:${bePort}`);
+        if (dbHost && dbPort) connectorParts.push(`DB=${dbHost}:${dbPort}`);
+        if (otherHost && otherPort)
+          connectorParts.push(`Others=${otherHost}:${otherPort}`);
+
+        document.getElementById("connectorResult").textContent =
+          connectorParts.join("-");
+     
+      }
+      function copyToClipboard() {
+        const text = document.getElementById("connectorResult").textContent;
+        navigator.clipboard
+          .writeText(text)
+          .then(() => alert("Configuration copied to clipboard!"))
+          .catch((err) => console.error("Failed to copy:", err));
+      }
+    </script>
+  </body>
+</html>

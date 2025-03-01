@@ -1,0 +1,64 @@
+{
+  "name": "dev-connect",
+  "displayName": "dev-connect",
+  "publisher": "utkarsh-payal",
+  "description": "",
+  "version": "0.0.3",
+  "icon": "pear.png",
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "devConnect",
+          "title": "Dev Connect",
+          "icon": "pear.png"
+        }
+      ]
+    },
+    "views": {
+      "devConnect": [
+        {
+          "id": "devConnectView",
+          "name": "Dev Connect Panel"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "dev-connect.start-dev-connect",
+        "title": "Start Dev-Connect"
+      },
+      {
+        "command": "dev-connect.start-dev-connect_connect",
+        "title": "Start Dev-Connect connect"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.97.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.19.0"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "holesail": "^1.10.1",
+    "holesail-client": "^1.1.7",
+    "holesail-server": "^2.0.1"
+  }
+}
